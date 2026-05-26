@@ -46,12 +46,57 @@ body {
   to { transform: scale(1); opacity: 1; }
 }
 
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.2s ease-out forwards;
 }
 
 .animate-scale-up {
   animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 22s linear infinite;
+  will-change: transform;
+}
+
+/* ── Dark Pink Mode ─────────────────────────────────────── */
+.dark-pink-mode,
+.dark-pink-mode * {
+  --tw-bg-opacity: 1;
+}
+
+.dark-pink-mode section,
+.dark-pink-mode .bg-white {
+  background-color: #1a0a12 !important;
+  border-color: #3d1a2a !important;
+  color: #fde8f0 !important;
+}
+
+.dark-pink-mode .text-neutral-800,
+.dark-pink-mode .text-neutral-700,
+.dark-pink-mode .text-neutral-600 {
+  color: #fde8f0 !important;
+}
+
+.dark-pink-mode .text-neutral-500,
+.dark-pink-mode .text-neutral-400 {
+  color: #c47a9a !important;
+}
+
+.dark-pink-mode .border-pink-100 {
+  border-color: #3d1a2a !important;
+}
+
+.dark-pink-mode input {
+  background-color: #2a0f1c !important;
+  color: #fde8f0 !important;
+  border-color: #5c2a3f !important;
 }
 
 /* Safe areas for iPhone home indicator */
