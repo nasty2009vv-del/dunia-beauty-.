@@ -10,27 +10,29 @@ import { Search, Sparkles, SlidersHorizontal, Truck, MessageCircle, BadgeCheck, 
 const HERO_SLIDES = [
   {
     id: 1,
-    badge:    { ar: '✨ جديد', en: '✨ New Arrivals' },
+    badge:    { ar: '✨ عطور فاخرة', en: '✨ Luxury Perfumes' },
     title:    { ar: 'دنيا بيوتي', en: 'Dunia Beauty' },
-    subtitle: { ar: 'اكتشفي أرقى العطور الفواحة، المستحضرات الفاخرة، والبيجامات الحريرية فائقة النعومة.', en: 'Discover captivating perfumes, luxurious makeup, and ultra-soft silk pajamas.' },
+    subtitle: { ar: 'اكتشفي أرقى العطور الفواحة المختارة بعناية لتعكس أناقتك وجمالك الفريد.', en: 'Discover captivating perfumes carefully chosen to reflect your unique elegance.' },
     cta:      { ar: 'تسوق العطور', en: 'Shop Perfumes' },
     href: '#products',
     bg: 'from-pink-100 via-rose-50 to-fuchsia-100',
     blob1: 'bg-pink-300/25',
     blob2: 'bg-fuchsia-300/20',
-    emoji: '🌸',
+    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&auto=format&fit=crop&q=80',
+    imageAlt: 'Luxury Perfume',
   },
   {
     id: 2,
     badge:    { ar: '💄 مكياج فاخر', en: '💄 Luxury Makeup' },
     title:    { ar: 'مكياج يليق بكِ', en: 'Makeup You Deserve' },
-    subtitle: { ar: 'تشكيلة مختارة بعناية من أرقى أصناف المكياج لتضيفي لمسة جمال لا تُنسى كل يوم.', en: 'A carefully curated selection of premium makeup to add an unforgettable touch of beauty every day.' },
+    subtitle: { ar: 'تشكيلة مختارة بعناية من أرقى أصناف المكياج لتضيفي لمسة جمال لا تُنسى كل يوم.', en: 'A carefully curated selection of premium makeup to add an unforgettable touch every day.' },
     cta:      { ar: 'اكتشفي المكياج', en: 'Explore Makeup' },
     href: '#products',
     bg: 'from-rose-100 via-pink-50 to-red-100',
     blob1: 'bg-rose-300/25',
     blob2: 'bg-pink-300/20',
-    emoji: '💄',
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&auto=format&fit=crop&q=80',
+    imageAlt: 'Luxury Makeup Palette',
   },
   {
     id: 3,
@@ -42,7 +44,8 @@ const HERO_SLIDES = [
     bg: 'from-purple-100 via-pink-50 to-rose-100',
     blob1: 'bg-purple-300/20',
     blob2: 'bg-pink-300/20',
-    emoji: '🌙',
+    image: 'https://images.unsplash.com/photo-1608748010899-18f300247112?w=600&auto=format&fit=crop&q=80',
+    imageAlt: 'Silk Pajamas',
   },
 ];
 
@@ -159,31 +162,56 @@ export default function HomePage() {
           {/* Decorative blobs */}
           <div className={`absolute -right-10 -top-10 h-48 w-48 rounded-full ${slide.blob1} blur-3xl`} />
           <div className={`absolute -left-10 -bottom-10 h-48 w-48 rounded-full ${slide.blob2} blur-3xl`} />
-          <div className="absolute top-6 right-6 text-5xl sm:text-7xl opacity-20 select-none">{slide.emoji}</div>
 
-          {/* Slide Content */}
-          <div className="relative max-w-2xl space-y-3 sm:space-y-5">
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-pink-600 backdrop-blur-sm shadow-sm">
-              {lang === 'ar' ? slide.badge.ar : slide.badge.en}
+          {/* Two-column layout: text + image */}
+          <div className="relative flex items-center justify-between gap-4">
+
+            {/* Text Content */}
+            <div className="space-y-3 sm:space-y-5 flex-1 min-w-0">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-pink-600 backdrop-blur-sm shadow-sm">
+                {lang === 'ar' ? slide.badge.ar : slide.badge.en}
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-neutral-800 leading-tight">
+                {lang === 'ar' ? slide.title.ar : slide.title.en}
+              </h1>
+
+              <p className="text-sm sm:text-base md:text-lg font-medium text-neutral-600 leading-relaxed max-w-sm">
+                {lang === 'ar' ? slide.subtitle.ar : slide.subtitle.en}
+              </p>
+
+              <div className="pt-1">
+                <a
+                  href={slide.href}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-400 px-6 py-2.5 text-xs sm:text-sm font-bold text-white shadow hover:from-pink-600 hover:to-rose-500 hover:shadow-md transition-all duration-300 transform active:scale-95"
+                >
+                  <Sparkles className="h-4 w-4" />
+                  <span>{lang === 'ar' ? slide.cta.ar : slide.cta.en}</span>
+                </a>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-neutral-800 leading-tight">
-              {lang === 'ar' ? slide.title.ar : slide.title.en}
-            </h1>
-
-            <p className="text-sm sm:text-base md:text-lg font-medium text-neutral-600 leading-relaxed max-w-md">
-              {lang === 'ar' ? slide.subtitle.ar : slide.subtitle.en}
-            </p>
-
-            <div className="pt-1">
-              <a
-                href={slide.href}
-                className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-pink-500 to-rose-400 px-6 py-2.5 text-xs sm:text-sm font-bold text-white shadow hover:from-pink-600 hover:to-rose-500 hover:shadow-md transition-all duration-300 transform active:scale-95"
-              >
-                <Sparkles className="h-4 w-4" />
-                <span>{lang === 'ar' ? slide.cta.ar : slide.cta.en}</span>
-              </a>
+            {/* Floating Product Image */}
+            <div className="hidden sm:flex shrink-0 items-center justify-center relative">
+              {/* Glow ring */}
+              <div className="absolute h-52 w-52 md:h-64 md:w-64 rounded-full bg-white/40 blur-2xl" />
+              {/* Decorative circles */}
+              <div className="absolute h-44 w-44 md:h-56 md:w-56 rounded-full border-2 border-white/30 animate-spin-slow" />
+              {/* Image */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                key={slide.id}
+                src={slide.image}
+                alt={slide.imageAlt}
+                className="relative z-10 h-44 w-44 md:h-60 md:w-60 rounded-3xl object-cover shadow-2xl border-4 border-white/70 animate-float"
+                style={{ animationDelay: '0s' }}
+              />
+              {/* Small decorative badge */}
+              <div className="absolute -bottom-2 -start-2 z-20 rounded-2xl bg-white/90 backdrop-blur-sm shadow-lg px-3 py-1.5 border border-pink-100 text-xs font-bold text-pink-600 animate-bounce-slow">
+                ✨ {lang === 'ar' ? 'جودة فاخرة' : 'Premium Quality'}
+              </div>
             </div>
+
           </div>
         </div>
 
